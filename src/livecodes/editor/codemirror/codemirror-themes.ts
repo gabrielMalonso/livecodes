@@ -142,8 +142,6 @@ export const codemirrorThemes: Array<{
   {
     name: 'github-dark',
     title: 'GitHub Dark',
-    url: ddietrCmThemesBaseUrl + 'github-dark.js',
-    exportName: 'githubDark',
   },
   {
     name: 'github-light',
@@ -262,10 +260,9 @@ const createTheme = ({
       '.cm-cursor, .cm-dropCursor': {
         borderLeftColor: settings.caret,
       },
-      '&.cm-focused .cm-selectionBackgroundm .cm-selectionBackground, .cm-selectionMatch, .cm-content ::selection':
-        {
-          backgroundColor: settings.selection,
-        },
+      '&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
+        backgroundColor: settings.selection,
+      },
       '.cm-activeLine': {
         backgroundColor: settings.lineHighlight,
       },
@@ -507,6 +504,31 @@ const liveCodesLight: Extension = [
 export const customThemes = {
   'livecodes-light': liveCodesLight,
   'livecodes-dark': liveCodesDark,
+  // Based on GitHub Dark Default with Gabriel's VS Code token color customizations.
+  'github-dark': createTheme({
+    variant: 'dark',
+    settings: {
+      background: '#0d1117',
+      foreground: '#e6edf3',
+      caret: '#2f81f7',
+      selection: '#2f81f766',
+      gutterBackground: '#0d1117',
+      gutterForeground: '#6e7681',
+      lineHighlight: '#6e76811a',
+    },
+    styles: [
+      { tag: [t.comment, t.docComment], color: '#6a9955' },
+      { tag: [t.string, t.character], color: '#f2cc60' },
+      { tag: [t.keyword, t.controlKeyword, t.modifier, t.operatorKeyword], color: '#ff7b72' },
+      { tag: [t.variableName, t.name], color: '#e6edf3' },
+      { tag: [t.function(t.variableName), t.function(t.propertyName)], color: '#d2a8ff' },
+      { tag: [t.typeName, t.className, t.standard(t.typeName)], color: '#ffb77a' },
+      { tag: [t.number, t.bool, t.null, t.atom], color: '#79c0ff' },
+      { tag: [t.propertyName, t.attributeName], color: '#79c0ff' },
+      { tag: [t.tagName], color: '#7ee787' },
+      { tag: [t.invalid], color: '#ffa198', fontStyle: 'italic' },
+    ],
+  }),
   monochrome: createTheme({
     variant: 'light',
     settings: {

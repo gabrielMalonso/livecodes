@@ -14,7 +14,7 @@ import { oneDark } from '@codemirror/theme-one-dark';
 // @ts-ignore
 import { EditorView, keymap, type KeyBinding, type ViewUpdate } from '@codemirror/view';
 // @ts-ignore
-import { redo, undo } from '@codemirror/commands';
+import { indentLess, indentMore, redo, undo } from '@codemirror/commands';
 // prettier-ignore
 // @ts-ignore
 import { HighlightStyle,defaultHighlightStyle,foldEffect,indentUnit,syntaxHighlighting,type LanguageSupport } from '@codemirror/language';
@@ -32,6 +32,8 @@ import { rainbowbrackets } from 'rainbowbrackets';
 // these are imported normally
 import { getEditorModeNode } from '../../UI/selectors';
 import { getLanguageSpecs } from '../../languages';
+import { registerKeyboardToolbar } from '../../mobile/keyboard-toolbar';
+import { getMobileOptions } from '../../mobile/options';
 import type {
   CodeEditor,
   CodemirrorTheme,
@@ -546,6 +548,7 @@ export const createEditor = async (options: EditorOptions): Promise<CodeEditor> 
   };
 
   const destroy = () => {
+    unregisterKeyboardToolbar?.();
     listeners.length = 0;
     keyBindings.length = 0;
     view.destroy();
@@ -553,6 +556,30 @@ export const createEditor = async (options: EditorOptions): Promise<CodeEditor> 
     // editors.splice(editors.indexOf(codeiumEditor), 1);
     removeEventListener('keydown', toggleTabFocusMode);
   };
+
+  const unregisterKeyboardToolbar =
+    getMobileOptions().keyboardToolbar &&
+    !readonly &&
+    ['markup', 'style', 'script'].includes(editorId)
+      ? registerKeyboardToolbar({
+          contentDOM: view.contentDOM,
+          insertText: (text) => {
+            view.dispatch(view.state.replaceSelection(text), {
+              scrollIntoView: true,
+              userEvent: 'input.type',
+            });
+            view.focus();
+          },
+          indent: () => {
+            indentMore(view);
+            view.focus();
+          },
+          outdent: () => {
+            indentLess(view);
+            view.focus();
+          },
+        })
+      : undefined;
 
   return {
     getValue,

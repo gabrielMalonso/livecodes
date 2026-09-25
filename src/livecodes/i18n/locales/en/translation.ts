@@ -672,6 +672,12 @@ const translation = {
     heading: 'Keyboard Shortcuts',
     key: 'Key',
   },
+  keyboardToolbar: {
+    indent: 'Indent',
+    label: 'Coding keys',
+    outdent: 'Outdent',
+    page: 'Page',
+  },
   login: {
     accessAllowed: 'Allow access to:',
     desc: '<1>By logging in, you agree that <2>cookies</2> may be stored on your device.</1> <3> <4>Why are these permissions required?</4> </3> <5> <6>How to change/revoke permissions?</6> </5>',

@@ -1,5 +1,9 @@
 # LiveCodes
 
+> Fork pessoal para Android/tablet: tema GitHub Dark personalizado, barra de teclas
+> paginável acima do teclado e console sem campo de entrada.
+> Veja [como compilar e instalar o aplicativo](mobile/README.md).
+
 A Code Playground That Just Works!
 
 <p align="center">

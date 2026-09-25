@@ -292,6 +292,10 @@ const initCodemirrorTS = doOnce(async () => {
       ...getCompilerOptions(),
       ...((getLanguageSpecs(lang)?.editorSupport?.compilerOptions || {}) as TS.CompilerOptions),
     };
+    // The compiler API expects filenames; Monaco accepts short names such as "dom".
+    compilerOpts.lib = compilerOpts.lib?.map((lib) =>
+      lib.startsWith('lib.') ? lib : `lib.${lib}.d.ts`,
+    );
     return createVirtualTypeScriptEnvironment(system, [], worker.ts, compilerOpts);
   };
   const language = codemirrorWorker.language || 'tsx';

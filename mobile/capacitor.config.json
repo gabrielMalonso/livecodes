@@ -1,0 +1,13 @@
+{
+  "appId": "com.gabrielalonso.livecodes",
+  "appName": "LiveCodes",
+  "webDir": "../build",
+  "server": {
+    "hostname": "livecodes.localhost",
+    "androidScheme": "https",
+    "appStartPath": "?language=typescript&console=full&editor=codemirror&editorTheme=codemirror:github-dark&autoupdate=false&keyboardToolbar=true&consoleInput=false"
+  },
+  "android": {
+    "backgroundColor": "#181818"
+  }
+}

@@ -1720,6 +1720,22 @@
     "notes": "",
     "translation": "Key"
   },
+  "keyboardToolbar.indent": {
+    "notes": "",
+    "translation": "Indent"
+  },
+  "keyboardToolbar.label": {
+    "notes": "",
+    "translation": "Coding keys"
+  },
+  "keyboardToolbar.outdent": {
+    "notes": "",
+    "translation": "Outdent"
+  },
+  "keyboardToolbar.page": {
+    "notes": "",
+    "translation": "Page"
+  },
   "login.accessAllowed": {
     "notes": "",
     "translation": "Allow access to:"

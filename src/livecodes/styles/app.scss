@@ -331,6 +331,8 @@
   }
 }
 
+@include meta.load-css('inc-keyboard-toolbar');
+
 html,
 body {
   box-sizing: border-box;

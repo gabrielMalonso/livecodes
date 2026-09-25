@@ -1,0 +1,117 @@
+body.mobile-keyboard-open #container {
+  height: calc(100% - 68px);
+}
+
+#mobile-keyboard-toolbar {
+  align-items: start;
+  background: var(--toolbar-bg-color);
+  border-top: 1px solid var(--brand-border);
+  bottom: 0;
+  box-sizing: border-box;
+  color: var(--toolbar-color);
+  direction: ltr;
+  display: flex;
+  gap: 10px;
+  height: 68px;
+  left: 0;
+  padding: 6px 8px 0;
+  position: fixed;
+  right: 0;
+  user-select: none;
+  z-index: 950;
+
+  &[hidden] {
+    display: none;
+  }
+
+  button {
+    background: var(--editor-bg-color, #0d1117);
+    border: 1px solid var(--brand-border);
+    border-radius: 6px;
+    color: inherit;
+    font-family: var(--font-code, monospace);
+    font-size: 18px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0 4px;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      background: #2f81f733;
+      border-color: #58a6ff;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #58a6ff;
+      outline-offset: -2px;
+    }
+  }
+
+  .keyboard-fixed-keys {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 4px;
+
+    button {
+      font-size: 13px;
+      min-width: 52px;
+    }
+  }
+
+  .keyboard-pager {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .keyboard-pages {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    touch-action: pan-x;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .keyboard-key-page {
+    display: grid;
+    flex: 0 0 100%;
+    gap: 4px;
+    grid-auto-columns: minmax(44px, 1fr);
+    grid-auto-flow: column;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .keyboard-page-indicators {
+    display: flex;
+    height: 16px;
+    justify-content: center;
+
+    button {
+      background: transparent;
+      border: 0;
+      height: 16px;
+      min-width: 24px;
+      padding: 5px 9px;
+
+      &::after {
+        background: currentColor;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        height: 6px;
+        opacity: 0.3;
+        width: 6px;
+      }
+
+      &[aria-pressed='true']::after {
+        background: #58a6ff;
+        opacity: 1;
+      }
+    }
+  }
+}

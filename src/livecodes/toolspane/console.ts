@@ -11,6 +11,7 @@ import { getEditorConfig } from '../config';
 import { createEditor, getFontFamily } from '../editor';
 import { customEvents } from '../events/custom-events';
 import { getLanguageExtension, mapLanguage } from '../languages';
+import { getMobileOptions } from '../mobile/options';
 import type {
   CodeEditor,
   Config,
@@ -373,6 +374,7 @@ export const createConsole = (
 
     const consoleInput = document.createElement('div');
     consoleInput.id = 'console-input';
+    consoleInput.hidden = !getMobileOptions().consoleInput;
     container.appendChild(consoleInput);
 
     const toolsPaneButtons = getToolspaneButtons();
@@ -409,7 +411,12 @@ export const createConsole = (
   const load = async () => {
     createConsoleElements();
     consoleEmulator = createConsoleEmulator();
-    if (config.readonly || config.mode === 'codeblock' || config.mode === 'editor') {
+    if (
+      !getMobileOptions().consoleInput ||
+      config.readonly ||
+      config.mode === 'codeblock' ||
+      config.mode === 'editor'
+    ) {
       return;
     } else {
       editor = await createConsoleInput();
