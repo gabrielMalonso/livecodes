@@ -11,7 +11,7 @@ Os projetos salvos ficam no armazenamento local do app.
 
 O wrapper ativa `keyboardToolbar=true` e `consoleInput=false` na URL inicial.
 A barra de teclas aparece acima do teclado Android somente quando um editor de
-código está em foco. Tab e Shift+Tab ficam fixos; símbolos e operadores são
+código está em foco. Tab, Shift+Tab e Run ficam fixos; símbolos e operadores são
 distribuídos em páginas com swipe (a quantidade de páginas se adapta à largura).
 A entrada do console fica oculta, mantendo os logs. Remover as flags restaura o
 comportamento original. A visibilidade do teclado vem dos insets de IME do Android.

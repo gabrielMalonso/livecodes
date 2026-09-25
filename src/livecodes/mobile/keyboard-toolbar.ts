@@ -1,3 +1,5 @@
+import { getRunButton } from '../UI/selectors';
+
 interface KeyboardEditor {
   contentDOM: HTMLElement;
   insertText: (text: string) => void;
@@ -6,7 +8,7 @@ interface KeyboardEditor {
 }
 
 const keyGroups = [
-  ['(', ')', '{', '}', '[', ']', '<', '>', '"', '`', ':', ';'],
+  ['{', '}', '[', ']', '<', '>', '"', '`', ':', ';'],
   ['=', '!', '&', '|', '=>'],
 ];
 
@@ -61,6 +63,16 @@ const createKeyboardToolbar = () => {
       window.deps.translateString('keyboardToolbar.outdent', 'Outdent'),
     ),
   );
+  const runButton = makeKey(
+    '',
+    () => getRunButton()?.click(),
+    window.deps.translateString('app.run.hint', 'Run (Shift + Enter)'),
+  );
+  const runIcon = document.createElement('i');
+  runIcon.className = 'icon-run';
+  runIcon.setAttribute('aria-hidden', 'true');
+  runButton.append(runIcon);
+  fixed.append(runButton);
 
   const updateIndicators = () => {
     if (!pages.clientWidth) return;
